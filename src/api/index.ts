@@ -4,8 +4,8 @@ Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 if (process.env.NODE_ENV === 'production') {
   var baseURL = window.location.protocol + "//" + window.location.host;
 } else {
-  // var baseURL = "http://test99.yunyikang.cn";
-  var baseURL = 'https://oa.api.yunyikang.cn'
+  var baseURL = "http://test99.yunyikang.cn";
+  // var baseURL = 'https://oa.api.yunyikang.cn'
 }
 /* 防止重复提交，利用axios的cancelToken */
 

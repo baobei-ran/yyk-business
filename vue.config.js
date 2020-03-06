@@ -21,8 +21,9 @@ module.exports = {
   pwa: {},
   devServer: {
       open: true,
-      host: "192.168.110.222",
-      port: 8082,
+      // host: "192.168.110.222",
+      host: "192.168.124.9",
+      port: 8081,
       https: false,
       hotOnly: false,
       proxy: { // 配置跨域

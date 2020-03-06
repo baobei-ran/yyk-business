@@ -1,7 +1,3 @@
-# yyk-business  // 业务端
-
-# apache 配置 history 模式
-    .htaccess 文件是配置项
 
 ## Project setup
 ```
@@ -40,7 +36,3 @@ yarn run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## history 模式在ie9下自动变更为 hash 模式解决方案
-
-    在路由中加入 fallback: false, // 强制使用 history 模式， 注意： 有些a标签的herf属性设置成#就会刷新整个页面的

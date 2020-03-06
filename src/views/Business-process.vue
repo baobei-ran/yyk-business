@@ -5,15 +5,21 @@
         <div class="flow-list" v-for='(val, i) in bus_list' :key='i'>
             <dl class="list-pre" v-if='val.state'>
                 <dt>
-                    <span class="color_blue">{{ val.createtime | Time('MM-dd') }} <b>{{ val.createtime | Time('hh:mm') }}</b></span>
+                    <span class="color_blue">{{ val.createtime | Time('MM-dd') }} 
+                      <b>{{ val.createtime | Time('hh:mm') }}</b>
+                    </span>
                     <i class="blue"></i>
                 </dt>
                 <dd>
                     <div class="div-color">
-                        <h2>{{ val.state == 1? '新增客户':val.state == 2? '设为C类客户': val.state == 3? '扔至公海': val.state == 4? '从公海认领': val.state == 5? '上传合同':val.state == 6? '补全合同':val.state == 7? '代理商退款,已扔至公海':val.state == 8? '影像设备已安装':''  }}</h2>
+                        <h2>{{ val.state == 1? '新增客户':val.state == 2? '设为C类客户': val.state == 3? '扔至公海': val.state == 4? '从公海认领': val.state == 5? '添加代理站点':val.state == 6? '补全合同':val.state == 7? '代理商退款,已扔至公海':val.state == 8? '影像设备已安装':''  }}</h2>
                         <p><b>{{ val.uname }}</b> | <span>{{ val.dname }}</span></p>
+                        <br />
+                        <p class="lx" v-if='val.state == 5 || val.state == 6'>
+                            站点名称：{{val.agency_name}}
+                        </p>
                         <p class="lx" v-if='val.pact'>
-                            合同类型：{{ val.pact==2?'定金合同':val.pact==1?'全款合同':'' }} {{ val.site_type == 1? '大型ID站点': val.site_type == 2?'中型ID站点': val.site_type == 3?'小型ID站点':'' }}
+                            合同类型：{{ val.pact==2?'定金合同':val.pact==1?'全款合同':'' }} &nbsp;&nbsp; {{ val.site_type == 1? '大型ID站点': val.site_type == 2?'中型ID站点': val.site_type == 3?'小型ID站点':'' }}
                         </p>
                         <p class="lx" v-if='val.fixation_money > 0'>
                             定金金额：{{ val.fixation_money }}元
@@ -22,6 +28,10 @@
                             <li v-if='val.tk_money > 0'>
                                 <span>退款金额：</span>
                                 <span>{{val.tk_money}}元 </span>
+                            </li>
+                            <li>
+                                <span>退款站点：</span>
+                                <span>{{ val.agency_name }}</span>
                             </li>
                             <li v-if='val.apply_pic && val.apply_pic.length'>
                                 <span>退款申请表：</span>
@@ -64,6 +74,10 @@
                             <li v-if='val.meeting_result == 2&&val.meeting_text'><span>未参会原因：</span><span>{{ val.meeting_text }}</span></li>
                         </ul>
                         <ul>
+                            <li v-if='val.type == 8 || val.type==9'>
+                              <span>站点名称：</span>
+                              <span>{{ val.agency_name }}</span>
+                            </li>
                             <li v-if='val.answer_money > 0'>
                                 <span>回款金额：</span>
                                 <span>{{ val.answer_money }}元</span>
@@ -108,7 +122,7 @@ export default class Business extends Vue {
         var self = this, 
             obj ={ id: id, type: type  };
         http.post('/inside/H5/follow_record', obj).then((res:any) => {
-            console.log(res)
+            // console.log(res)
             if (res.code == 200) {
                 self.is_not = false
                 res.data.map((val:any) => {
@@ -158,10 +172,11 @@ export default class Business extends Vue {
                 span {
                     display: inline-block;
                     text-align: right;
-                    width: rem(80);
+                    width: rem(90);
                     margin-right: rem(19);
                     b {
                         font-weight: normal;
+                        display: block;
                         font-size: rem(24);
                     }
                 }
@@ -178,20 +193,22 @@ export default class Business extends Vue {
                     margin-right: rem(-10);
                 }
                 .blue {
-                    background: #505EDE;
+                    background: url('../assets/icon/icon_sjjd.png') no-repeat;
+                    background-size: contain;
                     position: relative;
                     z-index: 10;
-                    &::after {
-                        content: '';
-                        display: block;
-                        position: absolute;
-                        top: rem(2);
-                        left: rem(2);
-                        width:rem(16);
-                        height: rem(16);
-                        background: #FFF;
-                        border-radius: 100%;
-                    }
+                    // background: #505EDE;
+                    // &::after {
+                    //     content: '';
+                    //     display: block;
+                    //     position: absolute;
+                    //     top: rem(2);
+                    //     left: rem(2);
+                    //     width:rem(16);
+                    //     height: rem(16);
+                    //     background: #FFF;
+                    //     border-radius: 100%;
+                    // }
                 }
             }
             dd {
@@ -251,6 +268,7 @@ export default class Business extends Vue {
                     .lx {
                         margin-top: rem(30);
                         margin-left: 0;
+                        display: block;
                     }
                     >ol {
                         > li {
