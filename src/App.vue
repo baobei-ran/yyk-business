@@ -11,7 +11,7 @@ export default class App extends Vue {
    mounted () {
         var version = this.version;          //版本号（每次上线前需要更新下版本号）
         // console.log('当前版本号common.js：',version)
-        var vvv ='1.0.1'
+        var vvv ='1.1.0'
         // console.log('当前版本号app.vue：',vvv)
         if(vvv !== version) {
           version = vvv;

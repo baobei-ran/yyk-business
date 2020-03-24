@@ -12,7 +12,7 @@
                 </dt>
                 <dd>
                     <div class="div-color">
-                        <h2>{{ val.state == 1? '新增客户':val.state == 2? '设为C类客户': val.state == 3? '扔至公海': val.state == 4? '从公海认领': val.state == 5? '添加代理站点':val.state == 6? '补全合同':val.state == 7? '代理商退款,已扔至公海':val.state == 8? '影像设备已安装':''  }}</h2>
+                        <h2>{{ val.state == 1? '新增客户':val.state == 2? '设为C类客户': val.state == 3?(val.fair_type == 1?'扔至公海':'客户自动流失至公海'): val.state == 4? '从公海认领': val.state == 5? '添加代理站点':val.state == 6? '补全合同':val.state == 7? '代理商退款,已扔至公海':val.state == 8? '影像设备已安装':''  }}</h2>
                         <p><b>{{ val.uname }}</b> | <span>{{ val.dname }}</span></p>
                         <br />
                         <p class="lx" v-if='val.state == 5 || val.state == 6'>
@@ -190,7 +190,7 @@ export default class Business extends Vue {
                     border-radius: 50%;
                     background: #DDD;
                     vertical-align: top;
-                    margin-right: rem(-10);
+                    margin-right: rem(-11);
                 }
                 .blue {
                     background: url('../assets/icon/icon_sjjd.png') no-repeat;

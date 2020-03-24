@@ -16,7 +16,7 @@ let options = {
 };
 import common from './utils/common'
 Vue.use(common, {
-    version: '1.0.1'
+    version: '1.1.0'
 })
 Vue.use(preview, options)
 new Vue({
