@@ -8,10 +8,10 @@ module.exports = {
   transpileDependencies: [],
   productionSourceMap: false,
   chainWebpack: config => {
-    config.entry.app = ['babel-polyfill', './src/main.js'];
+    // config.entry.app = ['babel-polyfill', './src/main.js'];
     config.plugins.delete('prefetch');
   },
-  configureWebpack: {
+  configureWebpack: config => {
     // output: { // 输出重构  打包编译后的 文件名称  【模块名称.版本号.时间戳】
     //   filename: `[name].${VUE_APP_Version}.${Timestamp}.js`,
     //   chunkFilename: `[name].${VUE_APP_Version}.${Timestamp}.js`

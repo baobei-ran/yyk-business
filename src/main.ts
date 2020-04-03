@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+// import 'babel-polyfill';
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -15,8 +15,9 @@ let options = {
   fullscreenEl: false
 };
 import common from './utils/common'
+import { VERSION } from './utils/_utils'
 Vue.use(common, {
-    version: '1.1.0'
+    version: VERSION
 })
 Vue.use(preview, options)
 new Vue({

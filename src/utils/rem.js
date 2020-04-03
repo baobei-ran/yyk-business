@@ -10,9 +10,9 @@
 	var v, initial_scale, timeCode, dom = win.document, domEle = dom.documentElement, viewport = dom.querySelector('meta[name="viewport"]'), flexible = dom.querySelector('meta[name="flexible"]');
 	if (viewport) {
 		//viewport：<meta name="viewport"content="initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5,user-scalable=no,minimal-ui"/>
-		var o = viewport.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);
-		if (o) {
-			initial_scale = parseFloat(o[2]);
+		var co = viewport.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+		if (co) {
+			initial_scale = parseFloat(co[2]);
 			v = parseInt(1 / initial_scale);
 		}
 	} else {
