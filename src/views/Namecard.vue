@@ -11,7 +11,7 @@
           </li>
           <li class="fl">
             <p class="myname">
-              <span id="myname" v-text='userInfo.name'>李世军</span><span id="nameid" v-text='userInfo.position|| "暂无职位"'>业务专员</span>
+              <span id="myname" v-text='userInfo.name'>李</span><span id="nameid" v-text='userInfo.position|| "暂无职位"'></span>
             </p>
             <p class="ltname" id="ltsname">北京云医康医疗科技集团</p>
           </li>
@@ -78,7 +78,7 @@ export default class Home extends Vue {
     private mounted () {
       let { uid } = this.$route.query
       _self.post('/inside/H5/card', { uid: uid }).then((res:any) => {
-        console.log(res)
+        // console.log(res)
         if (res.code == 1) {
             this.userInfo = res.data
             var str = res.data.name
